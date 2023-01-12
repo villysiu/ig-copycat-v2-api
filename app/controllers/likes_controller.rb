@@ -4,6 +4,7 @@ class LikesController < ApplicationController
     before_action :find_like, :only => [:destroy]
     def index
         render json: @photo.likes, only: [:id, :user_id], include: [user: { only: [:name]}]
+        # render json: @photo.likes,  include: [user: { only: [:name]}]
     end
     def create
         @like= @photo.likes.create(user_id: current_user.id)
