@@ -1,4 +1,7 @@
-json.liked_id @like.id
-json.liked_user_id @like.user_id 
-json.liked_user_name @like.user.name
 
+
+json.id @like.id
+json.user do
+    json.id @like.user_id
+    json.name @like.user.name
+end
