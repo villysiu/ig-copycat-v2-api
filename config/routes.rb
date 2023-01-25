@@ -2,6 +2,9 @@ Rails.application.routes.draw do # get 'current_user/index'
   get '/current_user', to: 'current_user#index'
   get '/private/test'
   patch '/private/update'
+  # get '/private/' , to: 'private#index'
+  match '/users',   to: 'private#index',   via: 'get'
+
   devise_for :users,
   path: '',
                path_names: {

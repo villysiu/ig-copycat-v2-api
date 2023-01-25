@@ -8,6 +8,7 @@ json.array! @photos do |photo|
     json.owner do
         json.id photo.user.id
         json.name photo.user.name
+        json.bio photo.user.bio
     end 
     json.likes photo.likes do |like|
         json.id like.id
