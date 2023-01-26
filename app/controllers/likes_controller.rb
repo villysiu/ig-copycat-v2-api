@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-
+    before_action :authenticate_user!, :except => [:index]
     before_action :find_photo
     before_action :find_like, :only => [:destroy]
     def index
@@ -13,8 +13,7 @@ class LikesController < ApplicationController
     def destroy
         @like.destroy
         render json: @like.id
-        # User.find_by(username: params[:id]).destroy
-        # @photo.likes.find_by(user_id: current_user.id).destroy
+       
     end
 
     private
@@ -23,7 +22,6 @@ class LikesController < ApplicationController
         @photo=Photo.find(params[:photo_id])
     end
     def find_like
-        puts params
         @like=@photo.likes.find(params[:id])
     end
     
