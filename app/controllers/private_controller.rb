@@ -8,22 +8,25 @@ class PrivateController < ApplicationController
 
   def index
     @users=User.all
-    
-    render json: @users, except: [:created_at, :updated_at], 
-    status: :ok
+    puts "are w here"
+    # render json: @users, except: [:created_at, :updated_at], 
+    # status: :ok
   end
 
   def update
-    current_user.update(name: params[:name])
-    current_user.update(bio: params[:bio])
-    render json:current_user, except: [:created_at, :updated_at],
-    status: :ok
+    @user=current_user
+    @user.update(name: params[:name])
+    @user.update(bio: params[:bio])
+    @user.update(avator: params[:avator])
+    
+    # render json:current_user, except: [:created_at, :updated_at],
+    #   status: :ok
   end
 
   private
 
   def user_params
-      params.permit(:name, :bio )
+      params.permit(:name, :bio, :avator )
   end
   
  

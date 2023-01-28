@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :registerable,
          jwt_revocation_strategy: JwtDenylist
 
-  has_many :photos, dependent: :destroy
-   has_many :likes
+       has_one_attached :avator
+       has_many :photos, dependent: :destroy
+       has_many :likes
 end
