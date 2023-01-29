@@ -2,7 +2,8 @@ class PrivateController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
   
   def test
-      render json: current_user, except: [:created_at, :updated_at],
+    @user=current_user
+      render json: current_user.id, except: [:created_at, :updated_at],
       status: :ok
   end
 
