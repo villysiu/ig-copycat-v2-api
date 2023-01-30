@@ -9,7 +9,7 @@ class PrivateController < ApplicationController
 
   def index
     @users=User.all
-    puts "are w here"
+    
     # render json: @users, except: [:created_at, :updated_at], 
     # status: :ok
   end
@@ -18,10 +18,13 @@ class PrivateController < ApplicationController
     @user=current_user
     @user.update(name: params[:name])
     @user.update(bio: params[:bio])
-    @user.update(avator: params[:avator])
+   
+    if params[:avator]=="null"
+      @user.update(avator: nil)
+    else
+      @user.update(avator: params[:avator]) 
+    end
     
-    # render json:current_user, except: [:created_at, :updated_at],
-    #   status: :ok
   end
 
   private

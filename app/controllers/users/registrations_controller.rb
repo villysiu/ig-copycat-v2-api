@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     resource.save
     sign_in(resource_name, resource)
-    render json: resource, except: [:created_at, :updated_at]
+    render json: resource.id, except: [:created_at, :updated_at]
   end
   
 
