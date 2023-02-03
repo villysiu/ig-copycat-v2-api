@@ -1,9 +1,17 @@
 Rails.application.routes.draw do # get 'current_user/index'
-  get '/current_user', to: 'current_user#index'
-  get '/private/test'
-  patch '/private/update'
-  # get '/private/' , to: 'private#index'
-  match '/users',   to: 'private#index',   via: 'get'
+  # get '/current_user', to: 'current_user#index'
+  # get '/private/test'
+  # patch '/private/update'
+
+  # match '/users',   to: 'private#index',   via: 'get'
+  # match '/current_user', to: 'private#test', via: 'get'
+  match '/update_user', to: 'private#update', via: 'patch'
+
+  match '/current_user', to: 'users/user#curr_user', via: 'get'
+  match '/users', to: 'users/user#index',   via: 'get'
+  match '/user', to: "users/user#update", via: 'patch'
+  match '/avatar', to: "users/avatar#update", via: 'patch'
+  match '/avatar', to: "users/avatar#destroy", via: 'delete'
 
   devise_for :users,
   path: '',
@@ -16,13 +24,10 @@ Rails.application.routes.draw do # get 'current_user/index'
   controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
-    
   }
   
   resources :photos do
-    
     resources :likes
-    
   end
 
   
