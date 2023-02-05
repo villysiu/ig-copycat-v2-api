@@ -10,5 +10,6 @@ class User < ApplicationRecord
 
        has_one_attached :avatar
        has_many :photos, dependent: :destroy
-       has_many :likes
+       has_many :likes, dependent: :destroy
+       has_many :comments, dependent: :destroy
 end

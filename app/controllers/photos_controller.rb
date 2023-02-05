@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
-    before_action :authenticate_user!, :only => [:create, :update]
-    before_action :find_photo, :only => [:show, :update, :destroy]
+    before_action :authenticate_user!, :except => [:index]
+    before_action :find_photo, :only => [:update, :destroy]
     def index
         @photos = Photo.all.order("created_at DESC")
     end
@@ -10,12 +10,12 @@ class PhotosController < ApplicationController
 
     def update
         @photo.update(desc: params[:desc])
-        render json: { desc: @photo.desc }
+        render json: nil, status: :ok
     end
     def destroy
         @photo.url.purge
         @photo.destroy
-        render json: @photo.id
+        render json: nil, status: :ok
     end
 
     private

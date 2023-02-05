@@ -10,9 +10,12 @@ Rails.application.routes.draw do # get 'current_user/index'
   match '/current_user', to: 'users/user#curr_user', via: 'get'
   match '/users', to: 'users/user#index',   via: 'get'
   match '/user', to: "users/user#update", via: 'patch'
+
   match '/avatar', to: "users/avatar#update", via: 'patch'
   match '/avatar', to: "users/avatar#destroy", via: 'delete'
+  match '/photos/:photo_id/likes', to: "likes#destroy", via: 'delete'
 
+  get '/401', to: 'users#user#unauthorized', as: :unauthorized
   devise_for :users,
   path: '',
                path_names: {
@@ -28,6 +31,9 @@ Rails.application.routes.draw do # get 'current_user/index'
   
   resources :photos do
     resources :likes
+  end
+  resources :photos do
+    resources :comments
   end
 
   

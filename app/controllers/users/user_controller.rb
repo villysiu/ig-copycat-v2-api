@@ -10,6 +10,7 @@ class Users::UserController < ApplicationController
     if @user
       render json: @user.id, except: [:created_at, :updated_at], status: :ok
     else 
+      puts "hhhhh"
       render json: nil, status: :ok
     end
   end
@@ -18,6 +19,9 @@ class Users::UserController < ApplicationController
     @user.update(name: params[:name]) 
     @user.update(bio: params[:bio]) 
     render json: @user.id, status: :ok
+  end
+  def unauthorized
+    puts "oh nooooooo 401"
   end
 
   private
