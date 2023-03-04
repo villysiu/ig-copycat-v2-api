@@ -8,6 +8,7 @@
     #end 
 
     json.likes []
+    json.comments []
 
 
 

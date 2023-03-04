@@ -1,5 +1,5 @@
 class Users::UserController < ApplicationController
-  before_action :authenticate_user!, :except => [:index, :curr_user]
+  before_action :authenticate_user!, :except => [:index, :show]
   before_action :find_current_user, :except => [:index]
 
   def index
@@ -7,6 +7,7 @@ class Users::UserController < ApplicationController
   end
 
   def curr_user
+    puts "CUUUUUURRRREEENNNNTTT UUUUSSSEEERRR"
     if @user
       render json: @user.id, except: [:created_at, :updated_at], status: :ok
     else 
@@ -16,12 +17,16 @@ class Users::UserController < ApplicationController
   end
 
   def update
+    puts "UUUUUUPPPPPDDDDDAAAAATTTTEEE"
     @user.update(name: params[:name]) 
     @user.update(bio: params[:bio]) 
-    render json: @user.id, status: :ok
+    render json: @user.id, except: [:created_at, :updated_at], status: :ok
   end
-  def unauthorized
-    puts "oh nooooooo 401"
+
+  def show
+    @user=User.find(params[:id])
+    puts "kKKKKKKKKK"
+    
   end
 
   private

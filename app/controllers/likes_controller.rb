@@ -6,7 +6,8 @@ class LikesController < ApplicationController
         @likes=@photo.likes
     end
     def create
-        @like= @photo.likes.create(user_id: current_user.id)
+        @like= @photo.likes.create!(user_id: current_user.id)
+        render json: {id: @like.id, user_id: @like.user_id}, status: :ok
     end
 
     def destroy
@@ -18,7 +19,8 @@ class LikesController < ApplicationController
     private
 
     def find_photo
-        puts params
+        puts params[:photo_id]
+        puts params[:comment]
         @photo=Photo.find(params[:photo_id])
     end
     # def find_like

@@ -5,11 +5,12 @@ Rails.application.routes.draw do # get 'current_user/index'
 
   # match '/users',   to: 'private#index',   via: 'get'
   # match '/current_user', to: 'private#test', via: 'get'
-  match '/update_user', to: 'private#update', via: 'patch'
+  # match '/update_user', to: 'private#update', via: 'patch'
 
   match '/current_user', to: 'users/user#curr_user', via: 'get'
   match '/users', to: 'users/user#index',   via: 'get'
   match '/user', to: "users/user#update", via: 'patch'
+  match 'users/:id', to: "users/user#show", via: 'get'
 
   match '/avatar', to: "users/avatar#update", via: 'patch'
   match '/avatar', to: "users/avatar#destroy", via: 'delete'

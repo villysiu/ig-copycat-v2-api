@@ -12,10 +12,16 @@ json.array! @photos do |photo|
     # end 
     json.likes photo.likes do |like|
         json.id like.id
-        json.user do
-            json.id like.user.id
-            json.name like.user.name
-        end
+       # json.user do
+            json.user_id like.user_id
+          #  json.name like.user.name
+      #  end
+    end
+    json.comments photo.comments do |comment|
+        json.id comment.id
+        json.user_id comment.user_id
+        json.comment comment.comment
+        
     end
         
 end
