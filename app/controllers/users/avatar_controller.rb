@@ -5,7 +5,8 @@ class Users::AvatarController < ApplicationController
   end
 
   def update
-
+    puts @user
+    puts params[:avatar]
     @user.update(avatar: params[:avatar]) 
     avatar_path=rails_blob_path(@user.avatar, only_path: true) if @user.avatar.attached?
    
