@@ -7,7 +7,6 @@ class Users::UserController < ApplicationController
   end
 
   def curr_user
-      puts "CUUUUUURRRREEENNNNTTT UUUUSSSEEERRR"
       render json: @user.id, except: [:created_at, :updated_at], status: :ok
     
   end
