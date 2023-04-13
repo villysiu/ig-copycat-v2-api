@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
     before_action :authenticate_user!, :except => [:index]
     before_action :find_photo, :only => [:update, :destroy]
+    
     def index
         
         @photos = Photo.all.order("created_at DESC")
@@ -33,5 +34,7 @@ class PhotosController < ApplicationController
     def find_photo
         @photo=Photo.find(params[:id])
     end
+    
+
     
 end
