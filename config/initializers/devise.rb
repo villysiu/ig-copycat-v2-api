@@ -320,8 +320,8 @@ Devise.setup do |config|
       ['DELETE', %r{^/logout$}]
     ]
     # jwt.expiration_time = 1.day.to_i
-    jwt.expiration_time = 30.minutes.to_i
-    # jwt.expiration_time = 1.minute.to_i
+    # jwt.expiration_time = 30.minutes.to_i
+    jwt.expiration_time = 15.minute.to_i
   end
 #prevent devise from using flash messages which are not present in Rails api mode.
   config.navigational_formats = []
