@@ -18,8 +18,7 @@ end
 
     Photo.create!(
         desc: Faker::Lorem.paragraph,
-        
-        link: Faker::LoremFlickr.image(size: '100x100', search_terms:["#{word}"], match_all: false),
+        link: Faker::LoremFlickr.image(size: '500x500', search_terms:["#{word}"], match_all: false),
         user_id: rand(1..User.count),
     )
 end
