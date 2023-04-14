@@ -2,11 +2,10 @@ json.array! @photos do |photo|
 
     json.id photo.id
     puts photo.link
-    json.url photo.link || 
-    ("http://localhost:3000/#{Rails.application.routes.url_helpers.rails_blob_path(photo.url, only_path: true) if photo.url.attached?}")
+    json.url Rails.application.routes.url_helpers.rails_blob_path(photo.url, only_path: true) if photo.url.attached?
     json.desc photo.desc
     json.owner_id photo.user.id
-   json.created_at photo.created_at.to_i
+    json.created_at photo.created_at.to_i
     json.likes photo.likes do |like|
         json.id like.id
         json.user_id like.user_id

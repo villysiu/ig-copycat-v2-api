@@ -46,3 +46,5 @@ gem 'devise-jwt'
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'faker'
+gem "ruby-openai"
+gem 'open-uri'

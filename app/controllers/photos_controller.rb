@@ -1,16 +1,31 @@
+require "openai"
+
 class PhotosController < ApplicationController
     before_action :authenticate_user!, :except => [:index]
     before_action :find_photo, :only => [:update, :destroy]
     
     def index
-        
         @photos = Photo.all.order("created_at DESC")
     end
     def create
-        puts photo_params
-        @photo = Photo.create!(photo_params)
-        puts "DONNENENENNEENNENENE"
-        puts @photo
+        # @photo = Photo.create!(photo_params)
+        @photo = Photo.new(photo_params)
+        # puts "desc"
+        # puts @photo.desc
+        # p @photo.url.blank?
+        # if @photo.url.blank? 
+            # openAIClient = OpenAI::Client.new
+            # response = openAIClient.images.generate(
+            #     parameters: { 
+            #         prompt: @photo.desc, 
+            #         size: "256x256" 
+            #     })
+            # puts response.dig("data", 0, "url")
+            # puts "OPEN AI"
+        #   end
+        # @photo.link=response.dig("data", 0, "url")
+          @photo.save
+         
     end
 
     def update
@@ -27,9 +42,7 @@ class PhotosController < ApplicationController
     private
 
     def photo_params
-        puts "ARE YU HERE?"
-        puts params
-        # params.permit(:user_id, :desc, :url)
+        params.permit(:user_id, :desc, :url)
     end
     def find_photo
         @photo=Photo.find(params[:id])
